@@ -1,1 +1,686 @@
+<style>
+/* Homebrewery V3 — a clean two-column rules handbook. */
+.page h1 { color: #710d1c; }
+.page h2, .page h3 { color: #710d1c; }
+.page table thead { background: #710d1c; color: white; }
+.page table tbody tr:nth-child(odd) { background-color: #efe8d8; }
+.page .note { border-left: 3px solid #710d1c; }
 
+/* Cover — faithfully reconstructed from the original handbook; the compass-and-book
+   emblem is vector art embedded from the original PDF, so no external image host is needed. */
+.page:first-child {
+  background: #0c0914 !important;
+  background-image: none !important;
+  color: #fffaf0;
+  padding: 0 !important;
+  column-count: 1 !important;
+  overflow: hidden;
+}
+.page:first-child::before, .page:first-child::after { display: none !important; }
+.page:first-child .campaign-cover {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  background: #0c0914; color: #fffaf0; text-align: center;
+  font-family: Georgia, 'DejaVu Serif', serif;
+}
+.page:first-child .cover-frame {
+  position: absolute; left: 0.32in; right: 0.32in;
+  top: 0.32in; bottom: 0.32in;
+  border: 1px solid #a2762e;
+  box-shadow: inset 0 0 0 6px #0c0914, inset 0 0 0 7px #a2762e;
+}
+.page:first-child .cover-diamond { position: absolute; width: 13px; height: 13px;
+  background: #aa7d31; transform: rotate(45deg); }
+.page:first-child .cover-diamond.tl { left: -7px; top: -7px; }
+.page:first-child .cover-diamond.tr { right: -7px; top: -7px; }
+.page:first-child .cover-diamond.bl { left: -7px; bottom: -7px; }
+.page:first-child .cover-diamond.br { right: -7px; bottom: -7px; }
+.page:first-child .cover-kicker {
+  position: absolute; top: 1.32in; left: 0; width: 100%;
+  font: 700 12pt/1.2 Arial, sans-serif;
+  letter-spacing: .045em; color: #d4ac62;
+}
+.page:first-child .cover-name {
+  position: absolute; top: 1.95in; left: 0; width: 100%;
+  font: 700 54pt/1.18 Georgia, 'DejaVu Serif', serif;
+  letter-spacing: -.025em; color: #fffaf0;
+  text-shadow: none;
+}
+.page:first-child .cover-name span { display: block; }
+.page:first-child .cover-name span:last-child {
+  font-size: 43pt; letter-spacing: -.035em;
+  white-space: nowrap; margin-top: .10in;
+}
+.page:first-child .cover-rule {
+  position: absolute; left: 15.5%; right: 15.5%; top: 3.88in;
+  height: 1px; background: #a2762e;
+}
+.page:first-child .cover-rule::after {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: 10px; height: 10px; background: #aa7d31;
+  transform: translate(-50%,-50%) rotate(45deg);
+}
+.page:first-child .cover-crest {
+  position: absolute; left: 50%; top: 4.77in;
+  width: 4.73in; height: 4.73in;
+  transform: translateX(-50%);
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjM0MCIgdmlld0JveD0iMTM2IDM0NSAzNDAgMzQwIj4KPGRlZnM+CjxjbGlwUGF0aCBpZD0iY2xpcF8xIj4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMCw3OTIpIiBkPSJNMCA3OTJINjEyVi4wMzAwMjkyOTdIMFoiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8xKSI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDAsNzkyKSIgZD0iTTAgLjAyOTk5OUg2MTJWNzkySDBaIiBmaWxsPSIjMGMwOTE0Ii8+CjwvZz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMCw3OTIpIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2EyNzYyZSIgZD0iTTIzIDIyLjk5OEg1ODkuMDAxVjc2OC45OTg5OUgyM1oiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMCw3OTIpIiBzdHJva2Utd2lkdGg9Ii40IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0zMCAyOS45OTlINTgyLjAwMVY3NjJIMzBaIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDMwLDc1Ni4wMDEpIiBkPSJNMCAwIDYtNiAwLTEyLTYtNiIgZmlsbD0iI2EyNzYyZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDMwLDI0KSIgZD0iTTAgMCA2LTYgMC0xMi02LTYiIGZpbGw9IiNhMjc2MmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw1ODIuMDAxLDc1Ni4wMDEpIiBkPSJNMCAwIDYtNiAwLTEyLTYtNiIgZmlsbD0iI2EyNzYyZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDU4Mi4wMDEsMjQpIiBkPSJNMCAwIDYtNiAwLTEyLTYtNiIgZmlsbD0iI2EyNzYyZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjx0ZXh0IGZpbGw9IiNkYWI5N2UiIHhtbDpzcGFjZT0icHJlc2VydmUiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAtMCAxIDAgNzkyKSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9IkRlamFWdVNhbnMiIGZvbnQtd2VpZ2h0PSJib2xkIj48dHNwYW4geT0iLTY4NC45OTk4IiB4PSIyMTguODQyNCAyMjcuMTQyNDEgMjM1Ljg2MjQxIDI0NC4xNjI0MiAyNDcuNjQyNDEgMjU0LjYwMjQyIDI2MS41NjI0IDI2OC41MjI0IDI3NS40ODI0IDI3OC45NjI0IDI4Mi40NDI0IDI4Ni4wOTI0IDI4OS41NzI0MyAyOTMuMDUyNDQgMzAwLjM5MjQ0IDMwOC4xMzI0MyAzMTguMDgyNDQgMzI1LjQxMjQgMzMzLjE1MjQgMzM2Ljg3MjQgMzQ1LjA4MjQgMzUzLjQ1MjQgMzU2LjkzMjQgMzY0LjYzMjQzIDM3Mi43NTI0IDM3OS4xMjI0IDM4NS45NTI0Ij4mI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDs8L3RzcGFuPjwvdGV4dD4KPHRleHQgZmlsbD0iI2ZlZjhlYSIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIC0wIDEgMCA3OTIpIiBmb250LXNpemU9IjQ4LjAwMDEiIGZvbnQtZmFtaWx5PSJEZWphVnVTZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiPjx0c3BhbiB5PSItNjA5Ljk5OTYiIHg9IjE3Ny42NTYzIDIzMC43OTI0IDI0OS4wMzI0NCAyODIuMjk2NSAzMTMuNDAwNTggMzQxLjI4ODY1IDM1OS41Mjg3IDM5MC42MzI3NiA0MDcuMzM2OCI+JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7PC90c3Bhbj48L3RleHQ+Cjx0ZXh0IGZpbGw9IiNmZWY4ZWEiIHhtbDpzcGFjZT0icHJlc2VydmUiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAtMCAxIDAgNzkyKSIgZm9udC1zaXplPSI0NC4wMDAxIiBmb250LWZhbWlseT0iRGVqYVZ1U2VyaWYiIGZvbnQtd2VpZ2h0PSJib2xkIj48dHNwYW4geT0iLTU0Ny45OTk1IiB4PSI0Ny41MzIzIDgyLjU1NjM4IDExMS4wNjg0NCAxNTcuNjIwNTUgMTg4LjM3NjYyIDIxNi44ODg2OSAyMzMuNjA4NzQgMjY0LjM2NDggMjk2LjM1Mjg5IDMxMS42NjQ5MyAzNTMuMjQ1MDQgMzgxLjc1NzA5IDQxMy43NDUxNiA0NDQuNTAxMjMgNDc1LjI1NzMgNTA0LjYwNTM2IDUzMy45NTM0Ij4mI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7PC90c3Bhbj48L3RleHQ+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDk1LDI4MC4wMDEpIiBzdHJva2Utd2lkdGg9Ii41NSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwSDQyMi4wMDEiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMzA2LjAwMSwyNzUuMDAwOTkpIiBkPSJNMCAwIDUtNSAwLTEwLTUtNSIgZmlsbD0iI2EyNzYyZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDQwNS4wMDEsNTA0LjAwMSkiIHN0cm9rZS13aWR0aD0iLjU1IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDBDMCA1NC42NzYtNDQuMzI0IDk5LTk5IDk5LTE1My42NzYgOTktMTk4IDU0LjY3Ni0xOTggMC0xOTgtNTQuNjc2LTE1My42NzYtOTktOTktOTktNDQuMzI0LTk5IDAtNTQuNjc2IDAgMCIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw0MTUuMDAxLDUwNC4wMDEpIiBzdHJva2Utd2lkdGg9Ii41NSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwQzAgNjAuMTk5LTQ4LjgwMSAxMDktMTA5IDEwOS0xNjkuMTk5IDEwOS0yMTggNjAuMTk5LTIxOCAwLTIxOC02MC4xOTktMTY5LjE5OS0xMDktMTA5LTEwOS00OC44MDEtMTA5IDAtNjAuMTk5IDAgMCIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw0NDUuMDAxLDUwNC4wMDEpIiBzdHJva2Utd2lkdGg9Ii41NSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwQzAgNzYuNzY4LTYyLjIzMiAxMzktMTM5IDEzOS0yMTUuNzY4IDEzOS0yNzguMDAxIDc2Ljc2OC0yNzguMDAxIDAtMjc4LjAwMS03Ni43NjgtMjE1Ljc2OC0xMzktMTM5LTEzOS02Mi4yMzItMTM5IDAtNzYuNzY4IDAgMCIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw0NTIuMDAxLDUwNC4wMDEpIiBzdHJva2Utd2lkdGg9Ii41NSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwQzAgODAuNjM0LTY1LjM2NiAxNDYtMTQ2IDE0Ni0yMjYuNjM0IDE0Ni0yOTIuMDAxIDgwLjYzNC0yOTIuMDAxIDAtMjkyLjAwMS04MC42MzQtMjI2LjYzNC0xNDYtMTQ2LTE0Ni02NS4zNjYtMTQ2IDAtODAuNjM0IDAgMCIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw0MzQuMDAxLDUwNC4wMDEpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDBIMTEiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsNDQwLjM2OTAzLDQ3Ny4yNzQwMykiIHN0cm9rZS13aWR0aD0iLjYiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2EyNzYyZSIgZD0iTTAgMCAxLjk2MSAuMzkxIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDQzMi41NzMwNCw0NTEuNTczMDQpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAgMS44NDcgLjc2NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw0MTkuOTEyMDMsNDI3Ljg4ODA0KSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwIDEuNjYzIDEuMTExIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDM5Ni41MTEwMyw0MTMuNDkxMDQpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAgNy43NzggNy43NzgiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMzgyLjExNCwzOTAuMDkwMDQpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAgMS4xMTEgMS42NjMiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMzU4LjQyOTAzLDM3Ny40MjkwMykiIHN0cm9rZS13aWR0aD0iLjYiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2EyNzYyZSIgZD0iTTAgMCAuNzY1IDEuODQ3Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDMzMi43MjgwNCwzNjkuNjMzMDQpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAgLjM5MSAxLjk2MSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwzMDYuMDAxMDUsMzc2LjAwMTA1KSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwVjExIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDI3OS4yNzQwNiwzNjkuNjMzMDQpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAtLjM5MSAxLjk2MSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwyNTMuNTczMDUsMzc3LjQyOTAzKSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwLS43NjUgMS44NDciLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMjI5Ljg4ODA1LDM5MC4wOTAwNCkiIHN0cm9rZS13aWR0aD0iLjYiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2EyNzYyZSIgZD0iTTAgMC0xLjExMSAxLjY2MyIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwyMTUuNDkxMDUsNDEzLjQ5MTA0KSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwLTcuNzc4IDcuNzc4Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDE5Mi4wOTAwNCw0MjcuODg4MDQpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAtMS42NjMgMS4xMTEiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTc5LjQyOTA1LDQ1MS41NzMwNCkiIHN0cm9rZS13aWR0aD0iLjYiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2EyNzYyZSIgZD0iTTAgMC0xLjg0NyAuNzY1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDE3MS42MzMwNCw0NzcuMjc0MDMpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAtMS45NjEgLjM5MSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxNzguMDAxMDQsNTA0LjAwMSkiIHN0cm9rZS13aWR0aD0iLjYiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2EyNzYyZSIgZD0iTTAgMEgtMTEiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTcxLjYzMzA0LDUzMC43MjgpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAtMS45NjEtLjM5MSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxNzkuNDI5MDUsNTU2LjQyOSkiIHN0cm9rZS13aWR0aD0iLjYiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2EyNzYyZSIgZD0iTTAgMC0xLjg0Ny0uNzY1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDE5Mi4wOTAwNCw1ODAuMTE0KSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwLTEuNjYzLTEuMTExIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDIxNS40OTEwNSw1OTQuNTExKSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwLTcuNzc4LTcuNzc4Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDIyOS44ODgwNSw2MTcuOTEyKSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwLTEuMTExLTEuNjYzIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDI1My41NzMwNSw2MzAuNTcxOTkpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAtLjc2NS0xLjg0OCIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwyNzkuMjc0MDYsNjM4LjM2ODk4KSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwLS4zOTEtMS45NjEiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMzA2LjAwMTA1LDYzMi4wMDEpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDBWLTExIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDMzMi43MjgwNCw2MzguMzY4OTgpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAgLjM5MS0xLjk2MSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwzNTguNDI5MDMsNjMwLjU3MTk5KSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwIC43NjUtMS44NDgiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMzgyLjExNCw2MTcuOTEyKSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwIDEuMTExLTEuNjYzIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDM5Ni41MTEwMyw1OTQuNTExKSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwIDcuNzc4LTcuNzc4Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDQxOS45MTIwMyw1ODAuMTE0KSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwIDEuNjYzLTEuMTExIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDQzMi41NzMwNCw1NTYuNDI5KSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwIDEuODQ3LS43NjUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsNDQwLjM2OTAzLDUzMC43MjgpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAgMS45NjEtLjM5MSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwzNDIuNzA2LDUxMy44MzYpIiBkPSJNMCAwIDEyMS4yOTUgOS44MzUgMCAxOS42NyIgZmlsbD0iIzQ1MTgzNiIgZmlsbC1ydWxlPSJldmVub2RkIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDM0Mi43MDYsNTEzLjgzNikiIHN0cm9rZS13aWR0aD0iLjYiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2EyNzYyZSIgZD0iTTAgMCAxMjEuMjk1IDkuODM1IDAgMTkuNjdaIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDMzOC45MSw0ODUuMDAxKSIgZD0iTTAgMCA0OS44MjMgNjMuNzMyLTEzLjkwOSAxMy45MDkiIGZpbGw9IiM0NTE4MzYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwzMzguOTEsNDg1LjAwMSkiIHN0cm9rZS13aWR0aD0iLjYiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2EyNzYyZSIgZD0iTTAgMCA0OS44MjMgNjMuNzMyLTEzLjkwOSAxMy45MDlaIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDMxNS44MzYsNDY3LjI5NikiIGQ9Ik0wIDAtOS44MzUgMTIxLjI5NS0xOS42NyAwIiBmaWxsPSIjNDUxODM2IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMzE1LjgzNiw0NjcuMjk2KSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwLTkuODM1IDEyMS4yOTUtMTkuNjcgMFoiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMjg3LjAwMSw0NzEuMDkyKSIgZD0iTTAgMC02My43MzIgNDkuODIzLTEzLjkwOS0xMy45MDkiIGZpbGw9IiM0NTE4MzYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwyODcuMDAxLDQ3MS4wOTIpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAtNjMuNzMyIDQ5LjgyMy0xMy45MDktMTMuOTA5WiIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwyNjkuMjk2LDQ5NC4xNjYpIiBkPSJNMCAwLTEyMS4yOTUtOS44MzUgMC0xOS42NyIgZmlsbD0iIzQ1MTgzNiIgZmlsbC1ydWxlPSJldmVub2RkIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDI2OS4yOTYsNDk0LjE2NikiIHN0cm9rZS13aWR0aD0iLjYiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2EyNzYyZSIgZD0iTTAgMC0xMjEuMjk1LTkuODM1IDAtMTkuNjdaIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDI3My4wOTIsNTIzLjAwMSkiIGQ9Ik0wIDAtNDkuODIzLTYzLjczMiAxMy45MDktMTMuOTA5IiBmaWxsPSIjNDUxODM2IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMjczLjA5Miw1MjMuMDAxKSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwLTQ5LjgyMy02My43MzIgMTMuOTA5LTEzLjkwOVoiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMjk2LjE2Niw1NDAuNzA2KSIgZD0iTTAgMCA5LjgzNS0xMjEuMjk1IDE5LjY3IDAiIGZpbGw9IiM0NTE4MzYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwyOTYuMTY2LDU0MC43MDYpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAgOS44MzUtMTIxLjI5NSAxOS42NyAwWiIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwzMjUuMDAxLDUzNi45MTAwNikiIGQ9Ik0wIDAgNjMuNzMyLTQ5LjgyMyAxMy45MDkgMTMuOTA5IiBmaWxsPSIjNDUxODM2IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMzI1LjAwMSw1MzYuOTEwMDYpIiBzdHJva2Utd2lkdGg9Ii42IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAgNjMuNzMyLTQ5LjgyMyAxMy45MDkgMTMuOTA5WiIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwzNjYuMDAxLDUwNC4wMDEpIiBkPSJNMCAwQzAgMzMuMTM3LTI2Ljg2MyA2MC02MCA2MC05My4xMzcgNjAtMTIwIDMzLjEzNy0xMjAgMC0xMjAtMzMuMTM3LTkzLjEzNy02MC02MC02MC0yNi44NjMtNjAgMC0zMy4xMzcgMCAwIiBmaWxsPSIjMGMwOTE0IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMzY2LjAwMSw1MDQuMDAxKSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwQzAgMzMuMTM3LTI2Ljg2MyA2MC02MCA2MC05My4xMzcgNjAtMTIwIDMzLjEzNy0xMjAgMC0xMjAtMzMuMTM3LTkzLjEzNy02MC02MC02MC0yNi44NjMtNjAgMC0zMy4xMzcgMCAwIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDMwNi4wMDEsNTIzLjAwMSkiIGQ9Ik0wIDBDLTEyIDktMjYgOS0zOSAzVjM3Qy0yNiA0My0xMiA0MyAwIDM0IiBmaWxsPSIjZmVmOGVhIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMzA2LjAwMSw1MjMuMDAxKSIgc3Ryb2tlLXdpZHRoPSIuNiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwQy0xMiA5LTI2IDktMzkgM1YzN0MtMjYgNDMtMTIgNDMgMCAzNFoiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMjk4LjAwMSw1MTAuMDAxKSIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwLTIzIDIiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMjk4LjAwMSw1MDIuMDAxKSIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwLTIzIDIiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMjk4LjAwMSw0OTQuMDAxKSIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwLTIzIDIiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMzA2LjAwMSw1MjMuMDAxKSIgZD0iTTAgMEMxMiA5IDI2IDkgMzkgM1YzN0MyNiA0MyAxMiA0MyAwIDM0IiBmaWxsPSIjZmVmOGVhIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMzA2LjAwMSw1MjMuMDAxKSIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwQzEyIDkgMjYgOSAzOSAzVjM3QzI2IDQzIDEyIDQzIDAgMzRaIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDMxNC4wMDEsNTEwLjAwMDk5KSIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTI3NjJlIiBkPSJNMCAwIDIzIDIiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMzE0LjAwMSw1MDIuMDAwOTkpIiBzdHJva2Utd2lkdGg9Ii41IiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMjc2MmUiIGQ9Ik0wIDAgMjMgMiIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwzMTQuMDAxLDQ5NC4wMDA5OSkiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2EyNzYyZSIgZD0iTTAgMCAyMyAyIi8+Cjx0ZXh0IGZpbGw9IiNkYWI5N2UiIHhtbDpzcGFjZT0icHJlc2VydmUiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAtMCAxIDAgNzkyKSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0iRGVqYVZ1U2FucyIgZm9udC13ZWlnaHQ9ImJvbGQiPjx0c3BhbiB5PSItNzguOTk4NiIgeD0iMTU5Ljg4MjMgMTY3LjQxNTMgMTc1LjA2NTI5IDE4Mi4zNzMyOSAxODguODUzMjkgMTk1LjAwMDI5IDE5OC4xMzIzIDIwNS4wNjIyOSAyMTIuMzcwMjkgMjE4LjEwMzI5IDIyNC4yNTAyOSAyMzAuNzMwMjkgMjMzLjg2MjI5IDIzNi45OTQzIDI0Mi43NDUzIDI0NS44NzczIDI0OS4wMDkzMSAyNTUuNDg5MyAyNjIuMDg2MyAyNjguMjMzMyAyNzMuOTY2MyAyNzkuNjk5MyAyODYuMzA1MyAyOTMuMjcxMyAyOTkuNzUxMyAzMDUuODg5MyAzMDkuMjM3MyAzMTYuNzcwMyAzMjQuMTU5MyAzMjcuMjkxMyAzMzAuNDIzMjkgMzM2LjE3NDMgMzM5LjMwNjI4IDM0Mi40MzgyNyAzNDkuOTA4MjcgMzUzLjI1NjI3IDM2MC4yMjIyNyAzNjMuNTcwMjYgMzcxLjEwMzI1IDM3Ny4yNTAyNSAzODAuMzgyMjQgMzg3Ljg1MjI0IDM5MS4yMDAyNCAzOTcuNjgwMjUgNDA0LjY0NjI1IDQxMS4yNDMyNCA0MTcuODQwMiA0MjQuNzcwMiA0MzIuNDIwMiA0MzkuMzg2MiA0NDYuMzUyMiI+JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7JiN4ZmZmZDsmI3hmZmZkOyYjeGZmZmQ7PC90c3Bhbj48L3RleHQ+Cjwvc3ZnPgo=");
+  background-position: center; background-repeat: no-repeat; background-size: contain;
+}
+.page:first-child .cover-subtitle {
+  position: absolute; left: 0; width: 100%; top: 9.77in;
+  color: #d4ac62; font: 700 11.5pt/1.2 Arial, sans-serif;
+  letter-spacing: .02em;
+}
+</style>
+
+
+<div class="campaign-cover">
+  <div class="cover-kicker">D&amp;D 2024&nbsp; / &nbsp;CAMPAIGN RULES</div>
+  <div class="cover-name"><span>Mikayla’s</span><span>Campaign Handbook</span></div>
+  <div class="cover-rule"></div>
+  <div class="cover-crest" aria-label="Compass rose encircling an open book"></div>
+  <div class="cover-subtitle">HOUSE RULES &nbsp;•&nbsp; SPELLCASTING &nbsp;•&nbsp; DIVINE DISAPPROVAL</div>
+</div>
+
+\page
+
+
+**MIKAYLA’S CAMPAIGN HANDBOOK**
+
+# Contents
+
+
+## I. Playing the Game
+- Skills — 3
+- Movement — 3
+- Extended tests — 4
+- Resolving tests and the Moorside example — 5
+- Combat — 6
+- Weapons — 6
+- Alternative and tertiary attack tables — 7
+
+## II. Spellcasting
+- Casting checks and result tiers — 8
+- Costs, spellburn, and reading spell tables — 9
+- Manifestation, corruption, and misfire — 10
+
+## III. Divine Spellcasting
+- Divine casting checks — 11
+- Deity Disapproval table — 12
+- Rest and atonement — 13
+
+## Index — 14
+
+{{pageNumber 2}}
+\page
+
+
+**CHAPTER I / PLAYING THE GAME**
+
+# Skills and Movement
+
+
+### Skills
+
+### Helping with Skill Rolls
+
+A character can only help with a skill roll if they are both trained.
+
+### Take 10
+
+Out of combat a character may “take 10” on a skill roll; the task takes 10 times longer than it normally would (usually meaning a 1 round skill check takes 10 rounds or 1 minute) and instead of rolling a D20, the character may just add 10 to their skill check modifier.
+
+### Hide
+
+The DC for hide is changed from 15 to the Passive Perception of the potential observer.
+
+{{note
+**Extended tests**
+
+For tasks that take multiple attempts, see pages 4–5.
+}}
+
+\column
+
+### Movement
+
+### Climbing and Swimming
+
+Without Athletics training, each foot climbed or swum costs 3 feet of movement. With Athletics training, each foot costs 2 feet. At Speed 30, you can cover 10 or 15 feet respectively, or 20 or 30 feet if you Dash.
+
+### Moving Through Allies
+
+Moving through allies counts as difficult terrain.
+
+### Using a High Jump to Reach
+
+You can extend your arms half your height above yourself during the jump. Thus, you can reach a distance equal to the height of the jump plus 1½ times your height.
+
+### Jumping
+
+Jumping uses movement foot for foot. Your total movement, including the jump, is limited to your Speed, or twice your Speed if you Dash. Movement spent before the jump reduces how far you can jump.
+
+
+{{wide
+
+### Jump Distances and Heights
+
+| Jump | Base distance or height | Untrained · DC 15 STR | Trained · DC 10 Athletics |
+| --- | --- | --- | --- |
+| Standing long | ½ Strength score in feet | +1 ft. | +1d3 ft. |
+| Running long | Strength score in feet | +1d3 ft. | +1d6 ft. |
+| Standing high | ½ (1 + STR modifier) ft., minimum 1 ft. | +1 ft. | +2 ft. |
+| Running high | (1 + STR modifier) ft., minimum 1 ft. | +1 ft. | +2 ft. |
+
+Running jumps require a run-up of at least 10 feet. High-jump height measures how far your feet rise above the ground.
+
+}}
+
+{{pageNumber 3}}
+\page
+
+
+**CHAPTER I / SKILLS**
+
+# Extended Tests
+
+{{wide
+
+Use an extended test when a task takes sustained effort and the situation can change before the characters finish. Freeing a jammed floodgate during combat, deciphering a ward before it resets, and searching a marsh for a lost barge all work the same way. The party earns Progress toward a goal while time and setbacks create pressure.
+
+If one roll can settle the outcome, use a normal ability check. If the party has ample time and success is inevitable, tell them how long the work takes.
+
+}}
+
+### 1. Set the Task
+
+Before the first roll, tell the players what success accomplishes, how much Progress they need, how long each attempt takes, and what consequences their characters can foresee.
+
+Start with DC 15, 5 Progress, and 3 Setbacks. Adjust the DC for how hard each attempt is, the Progress goal for how much work there is, and the deadline for how much time the party has. Use a deadline when the danger advances even if nobody works. Use Setbacks when mistakes make the situation worse. A task can use both.
+
+| Setting | Suggested values |
+| --- | --- |
+| Work interval | 1 round for urgent tasks, 10 minutes for scene-length work, 1 hour or 1 day for projects |
+| Check DC | 10 for straightforward work under pressure, 15 for demanding work, 20 for expert work |
+| Progress goal | 3 for a short obstacle, 5 for a substantial task, 8 for a major undertaking |
+| Setback limit | 3 by default. Use 2 for fragile tasks or 4 for forgiving ones. |
+| Deadline | Optional. Set a number of intervals before an outside event occurs. |
+
+\column
+
+### 2. Work One Interval at a Time
+
+One character leads each interval. The players describe what that character does, and the DM calls for an appropriate ability check. The lead can change between intervals, and a new approach can use a different ability or proficiency. For example, a character might use Intelligence (Investigation) to locate a jam, then another might use Strength (Athletics) to force the mechanism free.
+
+One other character can assist. If the helper describes a contribution that could plausibly improve the attempt, the lead rolls with Advantage. Both characters commit the interval to the task. In combat, the lead spends an action to work and the helper spends an action to Help. Declare the lead at the start of the round and resolve the check at the end of the lead’s turn. A helper must act before that check resolves.
+
+### Check Results
+
+| Check result | Effect |
+| --- | --- |
+| Meets or exceeds the DC | Gain 1 Progress. |
+| Beats the DC by 5 or more | Gain 2 Progress instead. |
+| Falls short by 1–4 | Gain 1 Setback. |
+| Falls short by 5 or more | Gain 1 Setback and suffer an immediate complication. |
+
+{{pageNumber 4}}
+\page
+
+
+**CHAPTER I / SKILLS**
+
+# Resolving Extended Tests
+
+### Complications and Creative Solutions
+
+An immediate complication should change the scene. A pry bar snaps, a foothold crumbles, or a witness demands a concession. Whenever possible, name the risk before the player commits to the roll. Keep the accumulated Progress unless an event in the fiction actually undoes the work.
+
+A spell, tool, or clever plan that completes a concrete part of the task can earn 1 Progress without a roll and uses the interval’s attempt. If it solves the entire problem, end the test. If it simply makes the attempt easier, grant Advantage or lower the DC when appropriate.
+
+### 3. Resolve the Outcome
+
+Reach the Progress goal. The party completes the task immediately.
+
+Reach the Setback limit. Apply the stated consequence. Further work requires a change in circumstances, such as replacing a broken tool, finding another route, or accepting a bargain.
+
+Run out of time. Resolve the deadline event. An attempt in the final interval counts before the event occurs. If work can continue afterward, keep the Progress and Setbacks and play on under the changed circumstances.
+
+Pause the work. Keep both totals while the work remains intact. Any outside deadline keeps running.
+
+For tasks that benefit from partial success, set one milestone in advance. A gate might open wide enough for people at 3 Progress but require 5 for a wagon. If the test ends early, the party still gets any milestone it reached.
+
+\column
+
+### The Sluice at Moorside
+
+A salvage barge has run aground at an old sluice outside Moorside. Its crew is trying to get clear before rising water pins the hull against the stonework.
+
+| Setting | Ruling |
+| --- | --- |
+| Interval | 1 round |
+| DC | 15 |
+| Goal | 5 Progress raises the gate enough to float the barge through. |
+| Milestone | 3 Progress opens a gap where the crew can reach the bank. |
+| Setback limit | At 3 Setbacks, the winch seizes. The party needs another way to lift the gate. |
+| Deadline | At the end of round 5, the current pins the barge. Even if the gate opens later, the hull needs to be freed. |
+
+On round 1, a rogue clears the ratchet with thieves’ tools. A fighter uses the Help action to hold the chain steady before the rogue acts. The rogue totals 21, earning 2 Progress. On round 2, the fighter takes over and rolls 12 on Strength (Athletics), adding 1 Setback. On round 3, a character cuts away a rope snarled around the gate track. The DM awards 1 Progress without a roll because that physically clears part of the obstruction.
+
+The crew can now scramble to safety. With two rounds left and two more Progress needed to save the barge, the players have a decision to make.
+
+{{pageNumber 5}}
+\page
+
+
+**CHAPTER I / PLAYING THE GAME**
+
+# Combat and Weapons
+
+### Initiative
+
+Use standard D&D initiative. Roll once at the start of combat.
+
+### Grappling
+
+A grappled creature you carry shares your square. To carry it, your carrying capacity must accommodate the creature, its gear, and your current load. When dragging a grappled creature, the weight requirement applies only if it goes Prone. You must then have enough Strength to drag its weight.
+
+### Shooting into Melee
+
+Ranged weapon and spell attacks into melee incur cover only if their path crosses intervening creatures. One creature grants Half Cover (+2 AC). Multiple creatures grant Three-Quarters Cover (+5 AC). If the attack misses only because of that bonus, roll a new attack against the intervening creature, chosen at random if there are several. Enough intervening creatures may grant Total Cover. The usual rules for making ranged attacks while in melee still apply.
+
+### Healing from 0 Hit Points
+
+Every time a character is knocked to 0 hit points and then healed to 1 or more hit points they gain a level of Exhaustion.
+
+\column
+
+
+#### New Weapons
+
+### Additional Martial Melee Weapons
+
+| Weapon | Cost | Damage | Weight | Properties | Mastery |
+|:-------|:----:|:-------|:------:|:-----------|:-------:|
+| Broadsword | 15 gp | 1d8 Slashing | 3 lb. |  | Vex |
+| Pollaxe | 20 gp | 1d10 Slashing | 6 lb. | Heavy, Reach, Two-Handed | Cleave |
+
+#### Weapon Descriptions
+
+**Broadsword** Also called an *arming sword* or *knight's sword*.
+
+
+:
+
+**Pollaxe (Poleaxe)** A polearm resembling a halberd, but with a slightly shorter shaft and a hammer opposite the axe blade instead of a hook.
+
+
+### Longswords
+
+Longswords gain Finesse but cannot be used for Rogue’s sneak attack.
+
+### Alternative Attacks
+
+Alternative attacks change the damage type and reduce the damage die by one step. A shortsword pommel strike, for example, deals 1d4 Bludgeoning instead of 1d6 Slashing. Tertiary attacks reduce the die by two steps unless a special rule specifies another effect. Weapon Mastery effects do not apply to these strikes. An attack can still require Weapon Mastery, as the halberd’s trip attack does.
+
+These strikes are choices for a normal Attack action. Fighting styles and feats work as usual. For example, Polearm Master still grants its separate 1d4 Bludgeoning butt strike as a Bonus Action after taking a qualifying Attack action.
+
+{{pageNumber 6}}
+\page
+
+
+**CHAPTER I / WEAPONS**
+
+# Weapon Attack Tables
+
+{{wide
+
+### Simple Melee Weapons
+
+| Weapon | Alternative Attacks | Tertiary Attack |
+| --- | --- | --- |
+| Club | None |  |
+| Dagger | Pommel Strike – 1d3 Bludgeoning |  |
+| Greatclub | None |  |
+| Handaxe | Butt Strike – 1d4 Bludgeoning |  |
+| Javelin | None |  |
+| Light Hammer | None |  |
+| Mace | None |  |
+| Quarterstaff | None |  |
+| Sickle | Thrust – 1d3 Piercing |  |
+| Spear | Butt Strike – 1d4 Bludgeoning |  |
+
+### Martial Melee Weapons
+
+| Weapon | Alternative Attack | Tertiary Attack |
+| --- | --- | --- |
+| Battleaxe | Butt Strike – 1d6 Bludgeoning |  |
+| Broadsword | Thrust – 1d6 Piercing | Pommel Strike – 1d4 Bludgeoning |
+| Flail | None |  |
+| Glaive | Thrust – 1d8 Piercing | Butt Strike – 1d6 Bludgeoning |
+| Greataxe | Butt Strike – 1d10 Bludgeoning |  |
+| Greatsword | Thrust – 1d10 Piercing | Butt Strike – 1d8 Bludgeoning |
+| Halberd | Thrust – 1d8 Piercing | Special – Trip Attack (requires Weapon Mastery) On hit: no damage, but target must make STR or DEX save vs DC equal to 8 + attacker’s attack bonus or fall prone. If target is mounted, then must make Animal Handling roll vs same DC or be dismounted. Successful Acrobatics roll v DC 15 means target lands on feet, failure leaves them prone. |
+| Lance | None |  |
+| Longsword | Thrust – 1d6/1d10 Piercing | Pommel Strike – 1d4/1d6 Bludgeoning |
+| Maul | None |  |
+| Morningstar | None |  |
+| Pike | None |  |
+| Pollaxe | Thrust – 1d8 piercing | Hammer – 1d6 bludgeoning |
+| Rapier | Slash – 1d6 Slashing | Pommel Strike – 1d4 Bludgeoning |
+| Scimitar | Pommel Strike – 1d4 Bludgeoning | Thrust – 1d3 Piercing |
+| Shortsword | Thrust – 1d4 Piercing | Pommel Strike – 1d3 Bludgeoning |
+| Trident | Butt Strike – 1d6 Bludgeoning |  |
+| Warhammer | None |  |
+| War Pick | None |  |
+| Whip | None |  |
+
+}}
+
+{{pageNumber 7}}
+\page
+
+
+**CHAPTER II / SPELLCASTING**
+
+# Casting Checks
+
+{{wide
+
+Use these campaign rules alongside the published 2024 spell descriptions and the separate spell-by-spell results document.
+
+### Make a Casting Check
+
+When you finish casting any spell, roll 1d20 + your Proficiency Bonus + the ability modifier used to cast that spell. Include a magic item bonus to your spell attack rolls, if applicable. The casting DC is 10 + the spell's printed level, with cantrips counting as level 0. Upcasting changes the baseline effect, not this DC.
+
+This is a special homebrew roll, not an attack roll, ability check, or saving throw. Advantage, Expertise, Guidance, and other bonuses to those rolls do not apply. A spell entry explicitly changing a casting check does apply. If an item supplies a spell without a casting ability, use its spell attack bonus, or its save DC minus 8; use +0 if neither exists. A natural 1 triggers the calamity procedure on page 10. On a natural 20, improve a successful result by one band, to a maximum of Wonder; a failed total becomes Normal instead.
+
+### Casting Check Results
+
+| Check | Result |
+| --- | --- |
+| Natural 1 | The spell fails and spell loss applies. Roll on the calamity table on page 10. |
+| Below DC | The spell fails with no magical effect. |
+| DC to DC + 8 | Normal: resolve the published 2024 spell exactly as written. |
+| DC + 9 to DC + 12 | Surge: resolve the normal spell plus its Surge result. |
+| DC + 13 to DC + 16 | Greater: resolve the normal spell plus its Greater result. |
+| DC + 17 or more | Wonder: resolve the normal spell plus its Wonder result. |
+
+{{note
+**Example · Acid Arrow**
+
+Acid Arrow is level 2, so its DC is 12. With a +5 casting bonus, a roll of 14 totals 19: Normal. A natural 20 totals 25: Greater, then improves to Wonder.
+}}
+
+}}
+
+{{pageNumber 8}}
+\page
+
+
+
+# Casting Costs and Effects
+
+### Costs and Consequences
+
+A completed casting uses its action or Reaction, item charge, and any consumed components even if the check fails. Spell slots are not consumed unless the spell is successfully cast. Rituals use their normal extra time and avoid a spell slot, but still require the check and any consumed materials. Interrupted casting follows the normal 2024 rules instead.
+
+:
+
+**Spell loss on a Natural 1:** After resolving its calamity, you cannot cast that spell again by any means until you finish a Long Rest. A cantrip instead returns after a Short or Long Rest. A natural 1 on Wish also triggers its normal non-duplication stress and permanent-loss roll exactly once, regardless of the calamity result. Permanent loss takes precedence.
+
+:
+
+**Optional Spellburn:** Before rolling, sacrifice 2 current HP and 2 maximum HP per +1 to the casting check, up to your Proficiency Bonus in bonus points. Neither value can fall below 1. This sacrifice is not damage and cannot be reduced, redirected, or paid with Temporary HP. Restore the sacrificed maximum HP only when you finish a Long Rest; it does not itself heal current HP. Spellburn never cancels a natural 1.
+
+:
+
+**Divine casting costs:** The divine casting procedure spends the slot or limited use even on a failed check. See page 11.
+
+### Read Each Spell Table
+
+Use one success row. Surge, Greater, and Wonder each add only their own text to the normal published 2024 effect; they do not accumulate. Apply upcasting and cantrip level scaling first. If a row includes multiple changes, apply all of them.
+
+:
+
+**Keep the baseline restrictions:** Retain targeting, creature eligibility, attack rolls, saves, repeat saves, Immunities, Concentration, component costs, range, and duration unless that row explicitly changes them. A successful casting check never guarantees a hit or failed enemy save. Legendary Resistance still applies. The one-spell-slot-per-turn restriction still applies.
+
+:
+
+**Damage and healing:** Unless a row explicitly says every hit, pulse, or breath, additional damage or healing applies only to the first qualifying instance per target in that casting. Roll added damage with the normal damage, using its normal save and damage type. A miss gains no extra damage unless the baseline already damages on a miss. Normal Critical Hit rules apply to added attack damage dice.
+
+:
+
+**Duration and protection:** A duration increase also increases the maximum Concentration time but never removes Concentration. An unqualified benefit lasts for the spell’s duration. An extra target follows the original targeting rules. Temporary HP never stack; a result explicitly adding to that spell’s own grant increases that single grant. Otherwise use the higher grant. An altered Mirror Image uses its new total duplicate count for all references to duplicates.
+
+:
+
+**Mishaps:** Unless specified otherwise, a mishap affects the caster and is instantaneous. Normal Resistance and Immunity apply. Use your spell save DC for any required save. For a random direction, roll 1d8 for the eight compass directions. If movement is blocked, use the nearest legal unoccupied space.
+
+{{pageNumber 9}}
+
+\page
+
+
+**CHAPTER II / SPELLCASTING**
+
+# Spell Calamities
+
+### Manifestation
+
+Manifestation. On a successful casting, use the spell's listed sensory signature. It is brief, ordinarily lasting a moment as the spell takes effect; descriptions of an ongoing effect may accompany that effect. It adds no damage, light radius, special sense, creature, or statistical benefit. It neither replaces required components nor makes imperceptible casting perceptible when a feature removes every component. The caster chooses purely descriptive details left open by the entry.
+
+### Corruption
+
+Corruption. This is a lasting physical or supernatural alteration to the caster, not a temporary mishap. It survives rests, ordinary healing, changes of clothing, and attempts to cut it away. Unless an entry expressly states an effect, the alteration is cosmetic and grants no bonus, attack, Resistance, valuable material, or special sense. The GM selects unspecified details to fit the spell. Identical corruptions do not multiply their effects; a repeat spreads or exaggerates the appearance.
+
+### Misfire
+
+Misfire. This is a distinct, immediate malfunction of the attempted spell. Resolve exactly its listed effects; the intended normal spell does not also occur. Misfires require no Concentration and end after their listed durations. A transformation changes only what the entry specifies, not the caster's whole stat block. There is no extra saving throw unless stated; any stated save uses the caster's normal spell save DC. Normal Immunities and Resistances apply.
+
+\column
+
+### Resolve a Natural 1
+
+The spell fails, casting resources are spent, and spell loss applies. Roll 1d6 once, then use the indicated entries for that spell. The original mishap is preserved as a separate entry; do not apply it unless the roll calls for it.
+
+| 1d6 | Calamity |
+| --- | --- |
+| 1–3 | Original mishap only. |
+| 4 | Misfire only. |
+| 5 | Corruption only. |
+| 6 | Both Misfire and Corruption. No original mishap. |
+
+Recovery. Greater Restoration removes one corruption chosen by its caster, in addition to its normal effect; Wish can remove corruption under its normal rules. This is an explicit homebrew extension. Remove Curse does not remove corruption. A repeated corruption is one alteration for removal purposes. Instantaneous damage and spent resources are not refunded. Apply Wish stress and its permanent-loss roll only once even if the selected entry repeats that instruction.
+
+Existing consequences. Keep the original mishap text and all four successful result bands. The new calamity roll determines which failure consequence occurs; it does not change the casting DC or add a second casting check. These are original DCC-inspired entries, not transcriptions of published DCC material.
+
+{{pageNumber 10}}
+\page
+
+
+**CHAPTER III / DIVINE SPELLCASTING**
+
+# Divine Casting Checks
+
+When a divine caster calls on their deity, the god may grant the spell, magnify it, or answer with a rebuke. Every failed casting makes another rebuke more likely until the caster rests or makes amends.
+
+### Who Rolls
+
+Clerics roll for spells of level 1 or higher cast through their Cleric Spellcasting feature, including domain spells. Paladins use the same rule if their oath is explicitly tied to a deity. A campaign can extend it to another character whose spellcasting feature explicitly draws power from a deity. Cantrips, rituals cast without a slot, spells cast from magic items, and class features such as Channel Divinity and Lay on Hands use their usual rules. If a feature casts an eligible spell directly without a slot, apply this rule only if that feature is designated as divine at your table.
+
+### Casting Procedure
+
+1. Set the casting DC. Use the spell’s casting DC if your spell results table supplies one. Otherwise, use 10 + the spell’s base level. Upcasting leaves the casting DC unchanged.
+
+2. Roll the casting check. Roll 1d20 + proficiency bonus + the spellcasting ability modifier for the feature used. A Cleric uses Wisdom and a Paladin uses Charisma. This is a separate homebrew roll from the spell’s attack roll or the target’s saving throw.
+
+3. Check the natural roll first. Your Disapproval Range starts at 1. If the face of the d20 is equal to or below your current range, the spell fails and you roll on the Deity Disapproval table. Otherwise, compare your modified total to the casting DC.
+
+\column
+
+### Resolve the Casting
+
+The casting attempt uses the normal casting time and expends the spell slot or limited use, plus any components the spell consumes, regardless of the result. A failed check produces no spell effect and increases your Disapproval Range by 1, to a maximum of 5. This increase also applies to a failure that triggered disapproval, after resolving the rebuke. On success, apply the spell’s result tier and resolve its attacks and saves as usual. A missed spell attack or a successful target save does not increase disapproval.
+
+| Casting total | Result |
+| --- | --- |
+| Below DC | Failure. Increase Disapproval Range by 1, to a maximum of 5. |
+| DC to DC + 8 | Normal |
+| DC + 9 to DC + 12 | Surge |
+| DC + 13 to DC + 16 | Greater |
+| DC + 17 or more | Wonder |
+
+Use any tier entry the spell has in your spell tables. If it has no entry for the tier rolled, use its normal D&D spell effect. For an eligible divine spell, the disapproval table takes the place of the spell’s Misfire entry when the natural roll triggers a rebuke.
+
+**Disapproval roll.** Roll as many d4s as the natural d20 result that triggered the rebuke. See pages 12–13.
+
+{{pageNumber 11}}
+\page
+
+
+**CHAPTER III / DIVINE SPELLCASTING**
+
+# Deity Disapproval
+
+{{wide
+
+Roll a number of d4s equal to the natural d20 roll that triggered disapproval and add them together. A natural 1 means 1d4, a natural 3 means 3d4, and a natural 5 means 5d4. As the range widens, the caster risks both more frequent and more severe rebukes. Adapt omens and penances to the deity’s doctrine. If a result has no applicable resource, target, or circumstance, move down to the next applicable result. Repeated results refresh their duration. A single check can suffer at most one disapproval penalty to its roll, using the largest applicable penalty and clearing any one-check penalties it triggered.
+
+### Rebukes 1–11
+
+| Total | Rebuke | Effect |
+| --- | --- | --- |
+| 1 | The God Falls Silent | Your holy symbol goes cold, an altar candle gutters, or you hear a single word of reproach. The failed spell is the full penalty. |
+| 2 | Unsteady Prayer | Subtract 1d4 from your next divine casting check before your next Long Rest. Roll the penalty after the d20. |
+| 3 | An Offering Is Due | You cannot receive a result above Normal until you spend 10 minutes making a fitting offering or finish a Long Rest. The offering can be symbolic. |
+| 4 | The God Demands Witness | You cannot receive a result above Normal until you tell another willing creature what favor you sought and what duty your faith asks of you, or finish a Long Rest. |
+| 5 | Faltering Focus | You have Disadvantage on the next Constitution saving throw you make to maintain Concentration before your next Long Rest. |
+| 6 | Empty Hands | You cannot use a Spellcasting Focus for divine spells until you spend 10 minutes reconsecrating your focus or finish a Long Rest. You can use the spells’ actual material components. |
+| 7 | A Burden Shared | Choose a willing ally who witnessed the failure. Until you spend an action tending to them, aiding them, or giving them something they need, subtract 1d4 from divine casting checks. The penalty ends when you finish a Long Rest. |
+| 8 | Withheld Grace | Expend one unused use of Channel Divinity granted by the class that supplied the failed spell. |
+| 9 | Silence Before Prayer | Until the end of your next turn, or for six seconds outside initiative, you cannot cast divine spells with verbal components. |
+| 10 | The God Claims a Tithe | Expend your lowest-level remaining spell slot. |
+| 11 | A Test of Humility | Until you finish a Short or Long Rest, subtract 1d4 from your divine casting checks whenever you cast with no conscious ally within 30 feet. |
+
+}}
+
+{{pageNumber 12}}
+\page
+
+
+**CHAPTER III / DIVINE SPELLCASTING**
+
+# Rebukes and Atonement
+
+{{wide
+
+### Rebukes 12–20
+
+| Total | Rebuke | Effect |
+| --- | --- | --- |
+| 12 | Healing Withheld | Your divine spells cannot restore Hit Points to you until you finish a Short or Long Rest. They can still heal other creatures, and other sources can still heal you. |
+| 13 | Prayer Goes Unanswered | You cannot cast the failed spell through the same class or source again until you finish a Short or Long Rest. |
+| 14 | Interdict | You cannot receive a result above Normal until you finish a Long Rest or make amends. |
+| 15 | Cast Down | You gain 1 level of Exhaustion. It follows the normal recovery rules. |
+| 16 | The God Demands Restitution | Your Disapproval Range has a minimum of 3 until you make amends. A Long Rest resets it to 3 while the penance is outstanding. |
+| 17 | The Greater Gate Closes | You cannot expend your highest-level spell slots to cast divine spells until you finish a Long Rest or make amends. If you have access to only one slot level, this rebuke instead expends one remaining slot of that level. |
+| 18 | The Weight of Judgment | You gain 1 level of Exhaustion, and your Disapproval Range becomes 5. |
+| 19 | The God Turns Away | You cannot cast divine spells of level 1 or higher until you finish a Short or Long Rest or make amends. |
+| 20 | Atonement Required | Apply The God Turns Away. In addition, your Disapproval Range has a minimum of 4 until you make amends. A Long Rest restores access to your spells and resets the range to 4 while the penance is outstanding. |
+
+}}
+
+### Rest and Atonement
+
+Long Rest. Reset your Disapproval Range to 1, subject to any ongoing minimum from the table. If more than one minimum applies, use the highest.
+
+Make amends. When a rebuke calls for atonement, the DM names a concrete act suited to the deity and the current adventure. A god of mercy might require the caster to treat an enemy’s wounds. A god of burial might ask them to recover remains from a flooded crypt in the Rushmoors and see them properly interred. Completing the act clears the rebuke or rebukes it addresses, including any associated minimum, and reduces the current range by 2, to a minimum of 1 or any outstanding minimum. Expended slots and Exhaustion recover under their usual rules.
+
+\column
+
+### Example of Disapproval
+
+A Cleric with +5 to divine casting attempts a 1st-level spell at DC 11. A natural 5 gives a total of 10. The spell fails, the slot is spent, and the range rises from 1 to 2. On the next attempt, a natural 2 triggers disapproval. The Cleric rolls 2d4, gets a 6, and loses the use of a Spellcasting Focus for divine spells until reconsecrating it or completing a Long Rest. The range then rises to 3. A later natural 15 gives a total of 20, beating DC 11 by 9 and earning a Surge.
+
+{{pageNumber 13}}
+\page
+
+
+**MIKAYLA’S CAMPAIGN HANDBOOK**
+
+# Index
+
+- **Ability checks** — 3, 4, 8
+- **Acid Arrow** — 8
+- **Alternative attacks** — 6, 7
+- **Athletics** — 3, 4, 5
+- **Atonement** — 12, 13
+- **Attack rolls, spell** — 8, 9, 11
+- **Broadsword** — 6, 7
+- **Calamity** — 8, 9, 10
+- **Cantrips** — 8, 9, 11
+- **Casting check** — 8, 11
+- **Channel Divinity** — 11, 12
+- **Clerics** — 11, 13
+- **Climbing** — 3
+- **Components, spell** — 9, 10, 11, 12
+- **Concentration** — 9, 10, 12
+- **Corruption** — 10
+- **Cover** — 6
+- **Dash** — 3
+- **Deadline** — 4, 5
+- **Disapproval Range** — 11, 12, 13
+- **Divine spellcasting** — 11, 12, 13
+- **Exhaustion** — 6, 13
+- **Extended tests** — 4, 5
+- **Finesse** — 6
+- **Grappling** — 6
+- **Greater Restoration** — 10
+- **Greater result** — 8, 9, 11
+- **Halberd trip attack** — 7
+- **Healing** — 6, 9, 13
+- **Help action** — 3, 4, 5
+- **Hiding** — 3
+- **High jump** — 3
+- **Initiative** — 6
+- **Long jump** — 3
+
+\column
+
+- **Longsword** — 6, 7
+- **Magic items** — 8, 9, 11
+- **Manifestation** — 10
+- **Milestone** — 5
+- **Misfire** — 10, 11
+- **Mishap** — 9, 10
+- **Moorside sluice** — 5
+- **Movement through allies** — 3
+- **Natural 1** — 8, 9, 10, 11
+- **Natural 20** — 8
+- **Normal result** — 8, 11, 12, 13
+- **Paladins** — 11
+- **Passive Perception** — 3
+- **Pollaxe** — 6, 7
+- **Progress** — 4, 5
+- **Rebukes** — 12, 13
+- **Rest and recovery** — 9, 10, 12, 13
+- **Rituals** — 9, 11
+- **Setbacks** — 4, 5
+- **Shooting into melee** — 6
+- **Sneak Attack** — 6
+- **Spell loss** — 8, 9, 10
+- **Spell slots** — 9, 11, 12, 13
+- **Spellburn** — 9
+- **Spellcasting Focus** — 12, 13
+- **Surge result** — 8, 9, 11, 13
+- **Swimming** — 3
+- **Take 10** — 3
+- **Temporary Hit Points** — 9
+- **Tertiary attacks** — 6, 7
+- **Upcasting** — 8, 9, 11
+- **Weapon Mastery** — 6, 7
+- **Wish** — 9, 10
+- **Wonder result** — 8, 9, 11
+- **Zero Hit Points** — 6
+
+{{pageNumber 14}}
